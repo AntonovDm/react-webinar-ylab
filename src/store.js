@@ -3,7 +3,10 @@
  */
 class Store {
   constructor(initState = {}) {
-    this.state = initState
+    this.state = {
+      ...initState,
+      list: initState.list.map((item) => ({ ...item, amountSelected: 0 })),
+    }
     this.listeners = [] // Слушатели изменений состояния
     this.refNumber = this.state.list.length
   }
@@ -15,6 +18,7 @@ class Store {
    */
   subscribe(listener) {
     this.listeners.push(listener)
+
     // Возвращается функция для удаления добавленного слушателя
     return () => {
       this.listeners = this.listeners.filter((item) => item !== listener)
@@ -48,9 +52,10 @@ class Store {
       ...this.state,
       list: [
         ...this.state.list,
-        { code: this.refNumber, title: 'Новая запись' },
+        { code: this.refNumber, title: 'Новая запись', amountSelected: 0 },
       ],
     })
+    console.log(this.state)
   }
 
   /**
@@ -73,6 +78,7 @@ class Store {
       ...this.state,
       list: this.state.list.map((item) => {
         if (item.code === code) {
+          item.amountSelected += 1
           item.selected = !item.selected
         } else {
           item.selected = false
