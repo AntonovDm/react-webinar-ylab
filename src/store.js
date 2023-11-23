@@ -78,14 +78,33 @@ class Store {
       ...this.state,
       list: this.state.list.map((item) => {
         if (item.code === code) {
-          item.amountSelected += 1
           item.selected = !item.selected
+          if (item.selected) {
+            item.amountSelected += 1
+          }
         } else {
           item.selected = false
         }
         return item
       }),
     })
+  }
+
+  formatWord(number) {
+    const lastTwoDigits = number % 100
+    const lastDigit = number % 10
+
+    if (lastTwoDigits >= 11 && lastTwoDigits <= 19) {
+      return `${number} раз`
+    }
+
+    if (lastDigit === 1) {
+      return `${number} раз`
+    } else if (lastDigit >= 2 && lastDigit <= 4) {
+      return `${number} раза`
+    } else {
+      return `${number} раз`
+    }
   }
 }
 

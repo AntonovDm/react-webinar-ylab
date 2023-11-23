@@ -33,7 +33,9 @@ function App({ store }) {
                 <div className="Item-title">
                   {item.amountSelected === 0
                     ? item.title
-                    : `${item.title} | Выделяли ${item.amountSelected} раз`}
+                    : `${item.title} | Выделяли ${store.formatWord(
+                        item.amountSelected
+                      )}`}
                 </div>
                 <div className="Item-actions">
                   <button onClick={() => store.deleteItem(item.code)}>
