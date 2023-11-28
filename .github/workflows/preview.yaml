@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 name: Vercel Preview Deployment
+=======
+name: Build Test
+>>>>>>> upstream/lecture-2
 env:
   VERCEL_ORG_ID: team_nuZTpjMFtjg6nYvRq8D59qS1
   VERCEL_PROJECT_ID: prj_DjaAeRmIZ6Nsl8pNbWl8YftMgHbO
@@ -16,6 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+<<<<<<< HEAD
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
@@ -26,4 +31,16 @@ jobs:
         run: vercel build --token=1Ofcwcd6Y7VNHLQoGns6Dqb6
 
       - name: Deploy Project Artifacts to Vercel
+=======
+      - name: Install CLI
+        run: npm install --global vercel@latest
+
+      - name: Pull Environments
+        run: vercel pull --yes --environment=preview --token=1Ofcwcd6Y7VNHLQoGns6Dqb6
+
+      - name: Build
+        run: vercel build --token=1Ofcwcd6Y7VNHLQoGns6Dqb6
+
+      - name: Deploy
+>>>>>>> upstream/lecture-2
         run: vercel deploy --prebuilt --token=1Ofcwcd6Y7VNHLQoGns6Dqb6
