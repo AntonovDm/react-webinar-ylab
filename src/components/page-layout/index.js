@@ -1,23 +1,22 @@
-import React from "react";
+import { cn as bem } from "@bem-react/classname";
 import PropTypes from "prop-types";
-import {cn as bem} from '@bem-react/classname';
-import './style.css';
 
-function PageLayout({children}) {
+import React from "react";
 
-  const cn = bem('PageLayout');
+import "./style.css";
+
+function PageLayout({ children }) {
+  const cn = bem("PageLayout");
 
   return (
     <div className={cn()}>
-      <div className={cn('center')}>
-        {children}
-      </div>
+      <div className={cn("center")}>{children}</div>
     </div>
   );
 }
 
 PageLayout.propTypes = {
-  children: PropTypes.node
-}
+  children: PropTypes.node,
+};
 
 export default React.memo(PageLayout);

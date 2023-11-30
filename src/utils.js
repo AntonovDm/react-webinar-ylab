@@ -52,3 +52,11 @@ export function generateCode2() {
     ? ++generateCode2.value
     : (generateCode2.value = 1);
 }
+
+export function formattedThousandthSpace(number) {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
+
+export function totalPrice(arr) {
+  return arr.reduce((acc, cur) => cur.price * cur.count + acc, 0);
+}

@@ -1,8 +1,11 @@
-import React, { useCallback } from "react";
-import List from "./components/list";
-import Controls from "./components/controls";
-import Head from "./components/head";
+import React, { useCallback, useState } from "react";
+
 import PageLayout from "./components/page-layout";
+import ModalCart from "./components/ModalCart";
+import Controls from "./components/controls";
+import Modal from "./components/modal";
+import List from "./components/list";
+import Head from "./components/head";
 
 /**
  * Приложение
@@ -10,7 +13,13 @@ import PageLayout from "./components/page-layout";
  * @returns {React.ReactElement}
  */
 function App({ store }) {
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
   const list = store.getState().list;
+  const cart = store.getState().cart;
+
+  const totalPrice = store.getTotalPrice();
+  const totalCount = cart.length;
 
   const callbacks = {
     onDeleteItem: useCallback(
@@ -19,29 +28,45 @@ function App({ store }) {
       },
       [store]
     ),
-
-    onSelectItem: useCallback(
-      (code) => {
-        store.selectItem(code);
+    onAddItem: useCallback(
+      (item) => {
+        store.addItem(item);
       },
       [store]
     ),
 
-    onAddItem: useCallback(() => {
-      store.addItem();
-    }, [store]),
+    onModalCart: useCallback(() => {
+      setIsCartOpen((prev) => !prev);
+    }, []),
   };
 
   return (
-    <PageLayout>
-      <Head title="Приложение на чистом JS" />
-      <Controls onAdd={callbacks.onAddItem} />
-      <List
-        list={list}
-        onDeleteItem={callbacks.onDeleteItem}
-        onSelectItem={callbacks.onSelectItem}
-      />
-    </PageLayout>
+    <>
+      <PageLayout>
+        <Head title="Магазин" />
+        <Controls
+          totalCount={totalCount}
+          totalPrice={totalPrice}
+          onModalCart={callbacks.onModalCart}
+        />
+        <List
+          list={list}
+          isCartOpen={isCartOpen}
+          onAddItem={callbacks.onAddItem}
+        />
+      </PageLayout>
+      {isCartOpen && (
+        <Modal>
+          <ModalCart
+            cart={cart}
+            totalPrice={totalPrice}
+            isCartOpen={isCartOpen}
+            onModalCart={callbacks.onModalCart}
+            onDeleteItem={callbacks.onDeleteItem}
+          />
+        </Modal>
+      )}
+    </>
   );
 }
 

@@ -1,21 +1,37 @@
 import React from "react";
-import PropTypes from 'prop-types';
-import './style.css';
+import PropTypes from "prop-types";
+import { formattedThousandthSpace, plural } from "../../utils";
 
-function Controls({onAdd}) {
+import Button from "../button";
+
+import "./style.css";
+
+function Controls({ totalCount, totalPrice, onModalCart }) {
+  const allPosition = `${totalCount} ${plural(totalCount, {
+    one: "товар",
+    few: "товара",
+    many: "товаров",
+  })}`;
+
   return (
-    <div className='Controls'>
-      <button onClick={() => onAdd()}>Добавить</button>
+    <div className="Controls">
+      <div className="Controls-cart">
+        В корзине:{" "}
+        <p>{`${allPosition} / ${formattedThousandthSpace(totalPrice)} ₽`}</p>
+      </div>
+      <Button title={"Перейти"} onClick={onModalCart} />
     </div>
-  )
+  );
 }
 
 Controls.propTypes = {
-  onAdd: PropTypes.func
+  totalCount: PropTypes.number,
+  totalPrice: PropTypes.number,
+  onModalCart: PropTypes.func,
 };
 
 Controls.defaultProps = {
-  onAdd: () => {}
-}
+  onModalCart: () => {},
+};
 
 export default React.memo(Controls);

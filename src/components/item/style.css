@@ -1,25 +1,55 @@
 .Item {
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   transition: background-color 1s;
-}
 
-.Item_selected {
-  background: #75aaf1;
-  color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .Item-code {
-  padding: 20px 10px 20px 20px;
+  max-width: 914px;
+  padding: 21px 20px 22px 19px;
+}
+
+.Item-price {
+  white-space: nowrap;
+  text-align: end;
+  padding: 19px 24px 21px 0;
+
+  font-size: 18px;
+}
+
+.Item-price--cart {
+  white-space: nowrap;
+  text-align: end;
+  padding: 20px 20px 21px 0;
+
+  font-size: 18px;
+}
+
+.Item-count {
+  width: 104px;
+  white-space: nowrap;
+  text-align: end;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding-right: 24px;
 }
 
 .Item-title {
   width: 100%;
-  padding: 20px 10px;
+  padding: 21px 0 22px 0;
 }
 
 .Item-actions {
   display: flex;
   justify-content: flex-end;
-  padding: 20px 20px 20px 10px;
+  padding: 21px 21px 19px 0px;
 }
