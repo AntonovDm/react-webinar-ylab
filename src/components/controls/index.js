@@ -17,7 +17,13 @@ function Controls({ totalCount, totalPrice, onModalCart }) {
     <div className="Controls">
       <div className="Controls-cart">
         В корзине:{" "}
-        <p>{`${allPosition} / ${formattedThousandthSpace(totalPrice)} ₽`}</p>
+        {totalCount === 0 ? (
+          <p className="Controls-cart--empty">пусто</p>
+        ) : (
+          <p className="Controls-cart--total">{`${allPosition} / ${formattedThousandthSpace(
+            totalPrice
+          )} ₽`}</p>
+        )}
       </div>
       <Button title={"Перейти"} onClick={onModalCart} />
     </div>

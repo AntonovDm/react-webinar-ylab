@@ -4,9 +4,11 @@ import PropTypes from "prop-types";
 import "./style.css";
 
 function Button({ title, onClick }) {
+  const className = title === "Перейти" ? "Button-next" : "Button";
+
   return (
     <>
-      <button className="Button" onClick={onClick}>
+      <button className={className} onClick={onClick}>
         <p className="Button-title">{title}</p>
       </button>
     </>

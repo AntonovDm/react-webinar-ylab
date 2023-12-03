@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 
 import PageLayout from "./components/page-layout";
-import ModalCart from "./components/ModalCart";
+import Cart from "./components/cart";
 import Controls from "./components/controls";
 import Modal from "./components/modal";
 import List from "./components/list";
@@ -29,8 +29,8 @@ function App({ store }) {
       [store]
     ),
     onAddItem: useCallback(
-      (item) => {
-        store.addItem(item);
+      (code) => {
+        store.addItem(code);
       },
       [store]
     ),
@@ -49,18 +49,14 @@ function App({ store }) {
           totalPrice={totalPrice}
           onModalCart={callbacks.onModalCart}
         />
-        <List
-          list={list}
-          isCartOpen={isCartOpen}
-          onAddItem={callbacks.onAddItem}
-        />
+        <List list={list} modal={false} onAddItem={callbacks.onAddItem} />
       </PageLayout>
       {isCartOpen && (
         <Modal>
-          <ModalCart
+          <Cart
             cart={cart}
             totalPrice={totalPrice}
-            isCartOpen={isCartOpen}
+            modal={true}
             onModalCart={callbacks.onModalCart}
             onDeleteItem={callbacks.onDeleteItem}
           />

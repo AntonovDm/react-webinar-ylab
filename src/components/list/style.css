@@ -2,9 +2,13 @@
 }
 
 .List-item {
+  box-sizing: border-box;
   border-bottom: 1px dashed #ccc;
+  height: 61px;
 }
 
 .List-item:first-child {
+  box-sizing: border-box;
   border-top: 1px dashed #ccc;
+  height: 61px;
 }

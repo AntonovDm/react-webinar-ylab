@@ -1,6 +1,10 @@
 .Button {
-  width: 80px;
+  width: 76px;
   height: 21px;
+}
+
+.Button-next {
+  width: 80px;
 }
 
 .Button-title {

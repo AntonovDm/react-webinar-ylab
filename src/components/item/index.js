@@ -6,7 +6,7 @@ import Button from "../button";
 
 import "./style.css";
 
-function Item({ item, isCartOpen, onAdd, onDelete }) {
+function Item({ item, modal, onAdd, onDelete }) {
   const callbacks = {
     onDelete: (e) => {
       e.stopPropagation();
@@ -14,12 +14,12 @@ function Item({ item, isCartOpen, onAdd, onDelete }) {
     },
     onAdd: (e) => {
       e.stopPropagation();
-      onAdd(item);
+      onAdd(item.code);
     },
   };
 
-  const classNamePrice = !isCartOpen ? "Item-price" : "Item-price--cart";
-  const buttonTitle = !isCartOpen ? "Добавить" : "Удалить";
+  const classNamePrice = !modal ? "Item-price" : "Item-price--cart";
+  const buttonTitle = !modal ? "Добавить" : "Удалить";
 
   return (
     <div className="Item">
@@ -28,10 +28,10 @@ function Item({ item, isCartOpen, onAdd, onDelete }) {
       <div className={classNamePrice}>{`${formattedThousandthSpace(
         item.price
       )} ₽`}</div>
-      {isCartOpen && <div className="Item-count">{`${item.count} шт`}</div>}
+      {modal && <div className="Item-count">{`${item.count} шт`}</div>}
       <div className="Item-actions">
         <Button
-          onClick={isCartOpen ? callbacks.onDelete : callbacks.onAdd}
+          onClick={modal ? callbacks.onDelete : callbacks.onAdd}
           title={buttonTitle}
         />
       </div>
@@ -46,7 +46,7 @@ Item.propTypes = {
     selected: PropTypes.bool,
     count: PropTypes.number,
   }).isRequired,
-  isCartOpen: PropTypes.bool,
+  modal: PropTypes.bool,
   onAdd: PropTypes.func,
   onDelete: PropTypes.func,
 };

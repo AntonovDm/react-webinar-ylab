@@ -43,16 +43,16 @@ class Store {
   /**
    * Добавление новой записи
    */
-  addItem(item) {
+  addItem(code) {
     const existingProduct = this.state.cart.find(
-      (listItem) => listItem.code === item.code
+      (listItem) => listItem.code === code
     );
 
     if (existingProduct) {
       this.setState({
         ...this.state,
         cart: this.state.cart.map((cartItem) => {
-          if (cartItem.code !== item.code) return cartItem;
+          if (cartItem.code !== code) return cartItem;
           return {
             ...cartItem,
             count: cartItem.count + 1,
@@ -65,7 +65,7 @@ class Store {
         cart: [
           ...this.state.cart,
           {
-            ...this.state.list.find((listItem) => listItem.code === item.code),
+            ...this.state.list.find((listItem) => listItem.code === code),
             count: 1,
           },
         ],

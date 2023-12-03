@@ -1,0 +1,27 @@
+.Cart-list {
+  padding: 71px 0 89px 0;
+}
+
+.Cart-list--total {
+  display: flex;
+  justify-content: end;
+  padding: 20px 120px 20px 0;
+}
+
+.Cart-list--total p {
+  font-family: Arial;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin: 0;
+}
+
+.Cart-list--total p:first-child {
+  padding-right: 53px;
+}
+
+.Cart-list--null {
+  font-size: 26px;
+  text-align: center;
+}
