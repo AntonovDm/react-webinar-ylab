@@ -1,0 +1,34 @@
+.pagination-button {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+
+  border: none;
+  outline: none;
+  background-color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination-label {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  font-family: Arial;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.pagination-button.active {
+  background-color: #0087e9;
+  color: #ffffff;
+}
+
+.pagination-button:hover {
+  background-color: #e1e1e1;
+}

@@ -1,0 +1,13 @@
+.Error {
+  padding: 50px;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 32px;
+  background-color: #fff;
+  cursor: pointer;
+  margin-top: 10px;
+}

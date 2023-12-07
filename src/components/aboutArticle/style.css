@@ -1,0 +1,42 @@
+.AboutArticle {
+  padding: 20px 40px 0 40px;
+}
+
+.AboutArticle-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.AboutArticle-description {
+  color: #000;
+  font-family: Arial;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.AboutArticle-item {
+  color: #000;
+  font-family: Arial;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.AboutArticle-bold {
+  font-weight: 700;
+}
+
+.AboutArticle-price {
+  color: #000;
+  font-family: Arial;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+
+  margin-bottom: 20px;
+}
