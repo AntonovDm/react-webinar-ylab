@@ -5,7 +5,7 @@ import "./style.css";
 
 function AboutArticle(props) {
   const callbacks = {
-    onAdd: (e) => props.onAdd(props.productById._id),
+    onAdd: () => props.onAdd(props.productById._id),
   };
 
   return (

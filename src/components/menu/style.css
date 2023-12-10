@@ -1,0 +1,12 @@
+.Menu-title {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration-line: underline;
+  margin-left: 20px;
+}
+
+.Menu-link {
+  color: #0087e9;
+}

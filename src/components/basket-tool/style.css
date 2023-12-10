@@ -13,16 +13,3 @@
   font-weight: bold;
   margin: 0 20px;
 }
-
-.BasketTool-title {
-  margin-right: auto;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  text-decoration-line: underline;
-}
-
-.BasketTool-link {
-  color: #0087e9;
-}

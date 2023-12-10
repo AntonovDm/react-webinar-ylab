@@ -7,7 +7,8 @@ import Head from "../../components/head";
 import BasketTool from "../../components/basket-tool";
 import useSelector from "../../store/use-selector";
 import AboutArticle from "../../components/about-article";
-import Basket from "../basket";
+import UnderHead from "../../components/under-head";
+import Menu from "../../components/menu";
 
 function Article() {
   const store = useStore();
@@ -15,9 +16,7 @@ function Article() {
 
   useEffect(() => {
     store.actions.catalog.loadPageById(params.articleId);
-  }, []);
-
-  const activeModal = useSelector((state) => state.modals.name);
+  }, [params.articleId]);
 
   const select = useSelector((state) => ({
     list: state.catalog.list,
@@ -43,17 +42,18 @@ function Article() {
   return (
     <PageLayout>
       <Head title={select.productById.title} />
-      <BasketTool
-        onOpen={callbacks.openModalBasket}
-        amount={select.amount}
-        sum={select.sum}
-      />
+      <UnderHead>
+        <Menu>Главная</Menu>
+        <BasketTool
+          onOpen={callbacks.openModalBasket}
+          amount={select.amount}
+          sum={select.sum}
+        />
+      </UnderHead>
       <AboutArticle
         productById={select.productById}
         onAdd={callbacks.addToBasket}
       />
-
-      {activeModal === "basket" && <Basket />}
     </PageLayout>
   );
 }

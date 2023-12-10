@@ -8,12 +8,11 @@ import Head from "../../components/head";
 import BasketTool from "../../components/basket-tool";
 import List from "../../components/list";
 import Pagination from "../../components/pagination";
-import Basket from "../basket";
+import Menu from "../../components/menu";
+import UnderHead from "../../components/under-head";
 
 function Main() {
   const store = useStore();
-
-  const activeModal = useSelector((state) => state.modals.name);
 
   const select = useSelector((state) => ({
     list: state.catalog.list,
@@ -59,14 +58,16 @@ function Main() {
   return (
     <PageLayout>
       <Head title="Магазин" />
-      <BasketTool
-        onOpen={callbacks.openModalBasket}
-        amount={select.amount}
-        sum={select.sum}
-      />
-      <List list={select.list} renderItem={renders.item} />
+      <UnderHead>
+        <Menu>Главная</Menu>
+        <BasketTool
+          onOpen={callbacks.openModalBasket}
+          amount={select.amount}
+          sum={select.sum}
+        />
+      </UnderHead>
 
-      {activeModal === "basket" && <Basket />}
+      <List list={select.list} renderItem={renders.item} />
 
       <Pagination
         totalPages={select.totalPages}
