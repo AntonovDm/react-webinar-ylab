@@ -10,6 +10,7 @@ class Catalog extends StoreModule {
   initState() {
     return {
       list: [],
+      productById: {},
       limit: 10,
       currentPage: 1,
       skip: 0,
@@ -44,6 +45,51 @@ class Catalog extends StoreModule {
         totalPages: Math.ceil(json.result.count / 10),
       },
       "Загружены товары из АПИ"
+    );
+  }
+
+  async loadPageById(articleId) {
+    const response = await fetch(
+      `/api/v1/articles/${articleId}?fields=*,madeIn(title,code),category(title)`
+    );
+
+    const json = await response.json();
+
+    const {
+      _id,
+      title,
+      description,
+      category: { title: categoryTitle },
+      madeIn: { title: madeInTitle },
+      edition,
+      price,
+    } = json.result;
+
+    this.setState(
+      {
+        ...this.getState(),
+        productById: {
+          _id,
+          title,
+          description,
+          categoryTitle,
+          madeInTitle,
+          edition,
+          price,
+        },
+        list: [
+          {
+            _id,
+            title,
+            description,
+            categoryTitle,
+            madeInTitle,
+            edition,
+            price,
+          },
+        ],
+      },
+      "Загружен товар по ID"
     );
   }
 }

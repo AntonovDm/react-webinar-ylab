@@ -1,10 +1,6 @@
-import {
-  Navigate,
-  RouterProvider,
-  createBrowserRouter,
-} from "react-router-dom";
-import Article, { loader as articleLoader } from "../components/article";
+import { Navigate, Route, Routes } from "react-router-dom";
 
+import Article from "./article";
 import Main from "./main";
 import Error from "../components/error";
 
@@ -13,25 +9,18 @@ import Error from "../components/error";
  * @returns {React.ReactElement}
  */
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Main />,
-  },
-  {
-    path: "/article/:articleId",
-    element: <Article />,
-    loader: articleLoader,
-    errorElement: <Error />,
-  },
-  {
-    path: "*",
-    element: <Navigate to="/" replace />,
-  },
-]);
-
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <Routes>
+      <Route path="/" element={<Main />} />
+      <Route
+        path="/article/:articleId"
+        element={<Article />}
+        errorElement={<Error />}
+      />
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+  );
 }
 
 export default App;
