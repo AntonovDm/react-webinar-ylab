@@ -12,8 +12,8 @@ function LoginForm() {
 
   const { t } = useTranslate();
 
-  const [login, setLogin] = useState("test");
-  const [password, setPassword] = useState("123456");
+  const [login, setLogin] = useState("");
+  const [password, setPassword] = useState("");
 
   const select = useSelector((state) => ({
     authorization: state.authorization,
