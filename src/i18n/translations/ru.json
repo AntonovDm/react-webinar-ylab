@@ -16,5 +16,11 @@
     "few": "товара",
     "many": "товаров",
     "other": "товара"
-  }
+  },
+  "authorization.enter": "Вход",
+  "authorization.logout": "Выход",
+  "authorization.submit": "Войти",
+  "authorization.login": "Логин",
+  "authorization.password": "Пароль",
+  "profile": "Профиль"
 }

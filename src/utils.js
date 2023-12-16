@@ -7,13 +7,13 @@
  * @param [locale] {String} Локаль (код языка)
  * @returns {String}
  */
-export function plural(value, variants = {}, locale = 'ru-RU') {
+export function plural(value, variants = {}, locale = "ru-RU") {
   // Получаем фурму кодовой строкой: 'zero', 'one', 'two', 'few', 'many', 'other'
   // В русском языке 3 формы: 'one', 'few', 'many', и 'other' для дробных
   // В английском 2 формы: 'one', 'other'
   const key = new Intl.PluralRules(locale).select(value);
   // Возвращаем вариант по ключу, если он есть
-  return variants[key] || '';
+  return variants[key] || "";
 }
 
 /**
@@ -30,6 +30,26 @@ export function codeGenerator(start = 0) {
  * @param options {Object}
  * @returns {String}
  */
-export function numberFormat(value, locale = 'ru-RU', options = {}) {
+export function numberFormat(value, locale = "ru-RU", options = {}) {
   return new Intl.NumberFormat(locale, options).format(value);
+}
+
+export function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(";");
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+export function deleteCookie(cname) {
+  document.cookie = `${cname}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
 }
