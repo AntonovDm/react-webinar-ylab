@@ -16,7 +16,7 @@ function UserHead() {
   const token = useCheckSession();
 
   const select = useSelector((state) => ({
-    name: state.user.user.name,
+    name: state.authorization.user.name,
   }));
 
   const callbacks = {

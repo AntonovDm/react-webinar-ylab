@@ -98,6 +98,54 @@ class AuthorizationState extends StoreModule {
       });
     }
   }
+
+  async user(token) {
+    if (token) {
+      this.setState({
+        ...this.getState(),
+        token,
+      });
+    }
+
+    this.setState({
+      ...this.getState(),
+      waiting: true,
+      error: "",
+    });
+
+    try {
+      const response = await fetch("/api/v1/users/self?fields=*", {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Token": this.getState().token,
+        },
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        this.setState({
+          user: {
+            name: result.result.profile.name,
+          },
+          error: "",
+          waiting: false,
+        });
+      } else {
+        this.setState({
+          ...this.getState(),
+          error: result.error.data?.issues[0].message || result.error.message,
+          waiting: false,
+        });
+      }
+    } catch (err) {
+      this.setState({
+        ...this.initState(),
+        error: err.message,
+        waiting: false,
+      });
+    }
+  }
 }
 
 export default AuthorizationState;
