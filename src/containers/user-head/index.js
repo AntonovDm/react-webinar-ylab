@@ -1,24 +1,23 @@
 import { memo } from "react";
+import { useNavigate } from "react-router-dom";
+import { deleteCookie } from "../../utils";
 import useTranslate from "../../hooks/use-translate";
-import { Link, useNavigate } from "react-router-dom";
 import SideLayout from "../../components/side-layout";
 import useSelector from "../../hooks/use-selector";
-import { deleteCookie, getCookie } from "../../utils";
 import useStore from "../../hooks/use-store";
-
-import "./style.css";
+import UserLine from "../../components/user-line";
+import useCheckSession from "../../hooks/use-check-session";
 
 function UserHead() {
   const store = useStore();
-
   const navigate = useNavigate();
   const { t } = useTranslate();
 
-  const select = useSelector((state) => ({
-    name: state.authorization.user.name,
-  }));
+  const token = useCheckSession();
 
-  const token = getCookie("token");
+  const select = useSelector((state) => ({
+    name: state.user.user.name,
+  }));
 
   const callbacks = {
     handleLogOut: () => {
@@ -29,24 +28,15 @@ function UserHead() {
   };
 
   return (
-    <div className="UserHead">
-      <SideLayout side={"end"} padding={"middle"}>
-        {!token ? (
-          <button onClick={() => navigate("/login")}>
-            {t("authorization.enter")}
-          </button>
-        ) : (
-          <>
-            <Link className="UserHead-link" to={"/profile"}>
-              {select.name}
-            </Link>
-            <button onClick={callbacks.handleLogOut}>
-              {t("authorization.logout")}
-            </button>
-          </>
-        )}
-      </SideLayout>
-    </div>
+    <SideLayout side={"end"} padding={"middle"}>
+      <UserLine
+        token={token}
+        name={select.name}
+        logIn={t("authorization.enter")}
+        logOut={t("authorization.logout")}
+        onOut={callbacks.handleLogOut}
+      />
+    </SideLayout>
   );
 }
 

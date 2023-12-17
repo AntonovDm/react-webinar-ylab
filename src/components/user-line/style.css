@@ -1,10 +1,4 @@
-.UserHead {
-  max-width: 1024px;
-  background-color: #fff;
-  border-bottom: 1px solid #dcdcdc;
-}
-
-.UserHead-link {
+.UserLine-link {
   color: #0087e9;
   font-size: 13px;
   font-weight: 400;

@@ -5,7 +5,7 @@ import Basket from "./basket";
 import Article from "./article";
 import Authorization from "./authorization";
 import Profile from "./Profile";
-import Auth from "./auth";
+import useAuth from "../hooks/use-auth";
 
 /**
  * Приложение
@@ -14,15 +14,15 @@ import Auth from "./auth";
 function App() {
   const activeModal = useSelector((state) => state.modals.name);
 
+  useAuth();
+
   return (
     <>
       <Routes>
-        <Route path={""} element={<Auth />}>
-          <Route index element={<Main />} />
-          <Route path={"/profile"} element={<Profile />} />
-          <Route path={"/login"} element={<Authorization />} />
-          <Route path={"/articles/:id"} element={<Article />} />
-        </Route>
+        <Route path={""} element={<Main />} />
+        <Route path={"/profile"} element={<Profile />} />
+        <Route path={"/login"} element={<Authorization />} />
+        <Route path={"/articles/:id"} element={<Article />} />
       </Routes>
 
       {activeModal === "basket" && <Basket />}
